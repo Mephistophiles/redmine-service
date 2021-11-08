@@ -1,0 +1,9 @@
+status = [
+    "CI (Test Suite)",
+    "CI (Rustfmt)",
+    "CI (Clippy)",
+    "CI (Docs)",
+    "CI (Publish dry run)",
+    "CI (Code coverage)",
+]
+delete_merged_branches = true

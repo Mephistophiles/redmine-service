@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package redmine_api;
+
+service Reports {
+	rpc GenerateReport(ReportRequest) returns(ReportResponse) {}
+}
+
+message ReportRequest {
+	repeated uint64 user_id = 1;
+	string generate_from_ts = 2;
+	string generate_to_ts   = 3;
+}
+
+message ReportResponse {
+	message PerUserReport {
+		uint64 user_id = 1;
+		string report  = 2;
+	};
+
+	repeated PerUserReport reports = 1;
+}

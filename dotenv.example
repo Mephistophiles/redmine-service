@@ -1,0 +1,6 @@
+# copy this file to .env
+
+REDMINE_URL="<URL>"
+REDMINE_API_KEY="<API_KEY>"
+
+GRPC_ADDR="127.0.0.1:50051"

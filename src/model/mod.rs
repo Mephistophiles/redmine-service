@@ -1,6 +1,7 @@
 use std::fmt::Display;
 
 use anyhow::{Context, Result};
+use itertools::Itertools;
 use log::{debug, info};
 use serde::{de::DeserializeOwned, Deserialize};
 use time::{macros::format_description, Date};
@@ -31,13 +32,6 @@ impl Redmine {
         Self { site, api_key }
     }
 
-    fn concat<T: Display>(list: &[T], separator: &str) -> String {
-        list.iter()
-            .map(|elem| format!("{}", elem))
-            .collect::<Vec<String>>()
-            .join(separator)
-    }
-
     #[cfg_attr(feature = "trace", instrument)]
     async fn get_api<'de, T, I, K, V>(&self, endpoint: &str, options: I, offset: usize) -> Result<T>
     where
@@ -54,8 +48,7 @@ impl Redmine {
             LIMIT,
             options
                 .map(|(name, value)| format!("{}={}", name, value))
-                .collect::<Vec<String>>()
-                .join("&")
+                .join("&"),
         );
 
         debug!("try to call {}", url);
@@ -125,7 +118,7 @@ impl Redmine {
 
         let whole_issues =
             futures::future::try_join_all(issue_ids.chunks(LIMIT).map(|issue_id| async {
-                let issue_ids = Self::concat(issue_id, ",");
+                let issue_ids = issue_id.iter().join(",");
 
                 let batch: BatchRequest = self
                     .get_api(

@@ -940,6 +940,7 @@ dependencies = [
  "env_logger",
  "futures",
  "indoc",
+ "itertools",
  "log",
  "opentelemetry",
  "opentelemetry-jaeger",

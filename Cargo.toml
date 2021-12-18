@@ -10,22 +10,22 @@ include = ["src/**/*", "proto/redmine_api.proto", "build.rs"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-anyhow = "1.0.48"
-dotenv = "0.15.0"
-env_logger = "0.9.0"
-futures = "0.3.18"
-itertools = "0.10.1"
-log = "0.4.14"
-opentelemetry = { version = "0.16.0", optional = true }
-opentelemetry-jaeger = { version = "0.15.0", optional = true }
-prost = "0.9.0"
-reqwest = { version = "0.11", features = ["json"] }
-serde = { version = "1.0.130", features = ["derive"] }
-serde_json = "1.0.69"
-time = { version = "0.3.5", features = ["formatting", "parsing", "macros"] }
-tokio = {version = "1.14", features = ["rt-multi-thread"]}
-tonic = "0.6.1"
-tracing = { version = "0.1.29", optional = true }
+anyhow = "1"
+dotenv = "0.15"
+env_logger = "0.9"
+futures = "0.3"
+itertools = "0.10"
+log = "0.4"
+opentelemetry = { version = "0.16", optional = true }
+opentelemetry-jaeger = { version = "0.15", optional = true }
+prost = "0.9"
+reqwest = { version = "0", features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+time = { version = "0.3", features = ["formatting", "parsing", "macros"] }
+tokio = {version = "1", features = ["rt-multi-thread"]}
+tonic = "0.6"
+tracing = { version = "0.1", optional = true }
 tracing-opentelemetry = { version = "0.16", optional = true }
 tracing-subscriber =  { version = "0.3", optional = true }
 
@@ -39,7 +39,7 @@ trace = [
 ]
 
 [build-dependencies]
-tonic-build = { version = "0.6.0", default-features = false, features = ["prost", "transport"] }
+tonic-build = { version = "0.6", default-features = false, features = ["prost", "transport"] }
 
 [dev-dependencies]
 indoc = "1"
